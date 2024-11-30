@@ -1,15 +1,22 @@
-pub fn start_day(day: &str) {
-    println!("Advent of Code 2024 - Day {:0>2}", day);
-}
+extern crate aoc_runner;
 
-// Additional common functions
+#[macro_use]
+extern crate aoc_runner_derive;
+extern crate crypto;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// pub mod day1;
+// pub mod day10;
+// pub mod day11;
+// pub mod day12;
+// pub mod day13;
+// pub mod day14;
+// pub mod day2;
+// pub mod day3;
+// pub mod day4;
+// pub mod day5;
+// pub mod day6;
+// pub mod day7;
+// pub mod day8;
+// pub mod day9;
 
-    #[test]
-    fn it_works() {
-        start_day("00");
-    }
-}
+aoc_lib! { year = 2024 }
