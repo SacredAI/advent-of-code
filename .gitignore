@@ -1,2 +1,10 @@
 target
 day-*.bench.txt
+
+*/input/
+
+
+# Added by cargo
+
+/target
+input/
