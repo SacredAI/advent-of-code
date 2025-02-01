@@ -1,6 +1,7 @@
 use crate::util::position::*;
 use std::ops::{Index, IndexMut};
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Grid<T> {
     pub width: i32,
     pub height: i32,

@@ -30,6 +30,30 @@ impl Pos {
     pub const fn new(x: i32, y: i32) -> Self {
         Pos { x, y }
     }
+
+    #[inline]
+    #[must_use]
+    pub fn clockwise(self) -> Self {
+        Pos::new(-self.y, self.x)
+    }
+
+    #[inline]
+    #[must_use]
+    pub fn counter_clockwise(self) -> Self {
+        Pos::new(self.y, -self.x)
+    }
+
+    #[inline]
+    #[must_use]
+    pub fn manhattan(self, other: Self) -> i32 {
+        (self.x - other.x).abs() + (self.y - other.y).abs()
+    }
+
+    #[inline]
+    #[must_use]
+    pub fn signum(self, other: Self) -> Self {
+        Pos::new((self.x - other.x).signum(), (self.y - other.y).signum())
+    }
 }
 
 impl Hash for Pos {
