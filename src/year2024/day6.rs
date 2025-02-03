@@ -68,12 +68,15 @@ fn is_cycle(
     mut position: Pos,
     mut dir: Pos,
 ) -> bool {
-    // Instead of cloning the grid, store the obstacle position.
-    let obstacle = position + dir;
-    if !grid.contains(obstacle) {
+    let mut grid = grid.clone();
+    // Place an obstacle at the initial obstacle position.
+    let initial_obstacle = position + dir;
+    if grid.contains(initial_obstacle) {
+        grid[initial_obstacle] = b'#';
+    } else {
         return false;
     }
-    // The obstacle is forced to be '#' in the simulation.
+
     while grid.contains(position) {
         if !seen.insert((position, dir)) {
             return true;
@@ -82,9 +85,7 @@ fn is_cycle(
         if !grid.contains(next) {
             break;
         }
-        // If next equals the obstacle, treat as if it were '#'.
-        let cell = if next == obstacle { b'#' } else { grid[next] };
-        if cell == b'#' {
+        if grid[next] == b'#' {
             dir = dir.clockwise();
             continue;
         }
