@@ -8,6 +8,29 @@ pub struct Grid<T> {
     pub grid: Vec<T>,
 }
 
+pub struct Positions<'a, T> {
+    pub x: i32,
+    pub y: i32,
+    pub grid: &'a Grid<T>,
+}
+
+impl<'a, T> Iterator for Positions<'a, T> {
+    type Item = Pos;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.y >= self.grid.height {
+            return None;
+        }
+        let pos = Pos::new(self.x, self.y);
+        self.x += 1;
+        if self.x == self.grid.width {
+            self.x = 0;
+            self.y += 1;
+        }
+        Some(pos)
+    }
+}
+
 impl Grid<u8> {
     pub fn parse(input: &str) -> Self {
         let raw: Vec<_> = input.lines().map(|line| line.as_bytes()).collect();
@@ -31,6 +54,14 @@ impl Grid<u8> {
             println!();
         }
         println!();
+    }
+
+    pub fn positions(&self) -> Positions<u8> {
+        Positions {
+            x: 0,
+            y: 0,
+            grid: self,
+        }
     }
 }
 
