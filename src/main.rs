@@ -47,6 +47,10 @@ fn main() {
         Some(subcmd) => {
             match subcmd {
                 Template { year, day } => {
+                    let folder = format!("src/year{}", year);
+                    if fs::exists(&folder).is_ok_and(|x| !x) {
+                        fs::create_dir_all(&folder).expect("Failed to create year folder");
+                    }
                     fs::copy(
                         "src/templates/dayn.rs",
                         format!("src/year{}/day{}.rs", year, day),
@@ -191,4 +195,4 @@ run!(year2022 day1, day2, day3, day4, day5);
 
 run!(year2023 day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14);
 
-run!(year2024 day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13);
+run!(year2024 day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14);
