@@ -29,7 +29,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["--day=10", "--year=2024"],
+            "args": ["--day=1", "--year=2025"],
             "cwd": "${workspaceFolder}"
         },
         {

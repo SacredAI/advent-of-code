@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Debug)]
 struct Card(u8);
 
